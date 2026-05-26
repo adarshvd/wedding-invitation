@@ -287,7 +287,14 @@
             border-radius: 8px;
             min-width: 75px;
             box-shadow: 0 6px 20px rgba(136,27,45,0.15);
+            transition: min-width 0.3s ease, padding 0.3s ease;
         }
+        
+        /* Hide a countdown block cleanly when not needed */
+        .countdown-box.hidden {
+            display: none !important;
+        }
+
         .countdown-val {
             font-family: 'Cinzel', serif;
             font-size: 1.6rem;
@@ -693,23 +700,23 @@
             </p>
             
             <!-- Digital Wedding Countdown Safely Placed Here to Prevent Photo Blocking -->
-            <p class="countdown-note">Counting down to Muhurtha • June 25, 11:10 AM</p>
-            <div class="countdown-container">
-                <div class="countdown-box">
-                    <span class="countdown-val" id="days">00</span>
-                    <span class="countdown-lbl">Days</span>
+            <p class="countdown-note" id="countdown-heading">Counting down to Muhurtha • June 25, 11:10 AM</p>
+            <div class="countdown-container" id="clock-container">
+                <div class="countdown-box" id="box-1">
+                    <span class="countdown-val" id="val-1">00</span>
+                    <span class="countdown-lbl" id="lbl-1">Days</span>
                 </div>
-                <div class="countdown-box">
-                    <span class="countdown-val" id="hours">00</span>
-                    <span class="countdown-lbl">Hrs</span>
+                <div class="countdown-box" id="box-2">
+                    <span class="countdown-val" id="val-2">00</span>
+                    <span class="countdown-lbl" id="lbl-2">Hrs</span>
                 </div>
-                <div class="countdown-box">
-                    <span class="countdown-val" id="minutes">00</span>
-                    <span class="countdown-lbl">Mins</span>
+                <div class="countdown-box" id="box-3">
+                    <span class="countdown-val" id="val-3">00</span>
+                    <span class="countdown-lbl" id="lbl-3">Mins</span>
                 </div>
-                <div class="countdown-box">
-                    <span class="countdown-val" id="seconds">00</span>
-                    <span class="countdown-lbl">Secs</span>
+                <div class="countdown-box" id="box-4">
+                    <span class="countdown-val" id="val-4">00</span>
+                    <span class="countdown-lbl" id="lbl-4">Secs</span>
                 </div>
             </div>
         </header>
@@ -862,7 +869,7 @@
             }
         });
 
-        // Seamless viewing tab management implementation (Auto-scroll removed)
+        // Seamless viewing tab management implementation
         function activateTab(event, targetPanelId) {
             document.querySelectorAll('.tab-trigger').forEach(btn => btn.classList.remove('active'));
             document.querySelectorAll('.tab-content-panel').forEach(panel => panel.classList.remove('active'));
@@ -871,26 +878,74 @@
             document.getElementById(targetPanelId).classList.add('active');
         }
 
-        // Digital Precision Countdown Sub-Routine 
-        const weddingDate = new Date("June 25, 2026 11:10:00").getTime();
+        // --- DYNAMIC PRECISION COUNTDOWN & COUNT-UP CALCULATOR ENGINE --- 
+        const targetDate = new Date("June 25, 2026 11:10:00");
+        const weddingTime = targetDate.getTime();
         
-        const countdownLoop = setInterval(function() {
-            const now = new Date().getTime();
-            const difference = weddingDate - now;
+        setInterval(function() {
+            const now = new Date();
+            const nowTime = now.getTime();
+            const totalDiff = weddingTime - nowTime;
 
-            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+            if (totalDiff > 0) {
+                // --- MODE A: STANDARD COUNTDOWN (Before Wedding) ---
+                const days = Math.floor(totalDiff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((totalDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((totalDiff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((totalDiff % (1000 * 60)) / 1000);
 
-            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
-            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
-            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+                // Populate standard labels and values
+                document.getElementById("countdown-heading").innerText = "Counting down to Muhurtha • June 25, 11:10 AM";
+                
+                document.getElementById("val-1").innerText = days < 10 ? "0" + days : days;
+                document.getElementById("lbl-1").innerText = "Days";
+                
+                document.getElementById("val-2").innerText = hours < 10 ? "0" + hours : hours;
+                document.getElementById("lbl-2").innerText = "Hrs";
+                
+                document.getElementById("val-3").innerText = minutes < 10 ? "0" + minutes : minutes;
+                document.getElementById("lbl-3").innerText = "Mins";
+                
+                document.getElementById("val-4").innerText = seconds < 10 ? "0" + seconds : seconds;
+                document.getElementById("lbl-4").innerText = "Secs";
+                
+                // Ensure all 4 blocks are visible
+                document.getElementById("box-4").classList.remove("hidden");
+            } else {
+                // --- MODE B: CALENDAR COUNT-UP (After Wedding) ---
+                document.getElementById("countdown-heading").innerText = "Happily Married Since • June 25, 2026";
+                
+                // Detailed calendar math breakdown to ensure perfect structural accuracy
+                let yearsDiff = now.getFullYear() - targetDate.getFullYear();
+                let monthsDiff = now.getMonth() - targetDate.getMonth();
+                let daysDiff = now.getDate() - targetDate.getDate();
 
-            if (difference < 0) {
-                clearInterval(countdownLoop);
-                document.querySelector(".countdown-container").innerHTML = "<b style='color:var(--accent-gold); letter-spacing:2px; font-size:1.4rem; font-family:Cinzel,serif;'>JUST MARRIED ❤️</b>";
+                // Handle fractional trailing days within the target boundaries
+                if (daysDiff < 0) {
+                    monthsDiff--;
+                    // Get total days in the previous month
+                    const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+                    daysDiff += prevMonth.getDate();
+                }
+
+                // Handle trailing negative months boundary alignment
+                if (monthsDiff < 0) {
+                    yearsDiff--;
+                    monthsDiff += 12;
+                }
+
+                // UI mapping optimization transformations (Years, Months, Days)
+                document.getElementById("val-1").innerText = yearsDiff < 10 ? "0" + yearsDiff : yearsDiff;
+                document.getElementById("lbl-1").innerText = "Years";
+
+                document.getElementById("val-2").innerText = monthsDiff < 10 ? "0" + monthsDiff : monthsDiff;
+                document.getElementById("lbl-2").innerText = "Months";
+
+                document.getElementById("val-3").innerText = daysDiff < 10 ? "0" + daysDiff : daysDiff;
+                document.getElementById("lbl-3").innerText = "Days";
+
+                // Completely hide fourth layout box since seconds tracking isn't utilized post-wedding
+                document.getElementById("box-4").classList.add("hidden");
             }
         }, 1000);
 
