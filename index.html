@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Wedding Invitation</title>
+    <!-- Google Fonts for premium elegant typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
@@ -644,14 +645,18 @@
 </head>
 <body>
 
+    <!-- Ambient Floating Flowers Background Layer -->
     <div class="flower-container" id="flower-layer"></div>
 
+    <!-- Your Custom Local Background Audio Tracking -->
     <audio id="wedding-soundtrack" loop>
         <source src="gulabi.mp3" type="audio/mpeg">
     </audio>
 
+    <!-- Interactive Music Player Floating Button Toggle -->
     <button class="audio-control-btn" id="audio-toggle" onclick="toggleAudio()" style="display: none;">🔇</button>
 
+    <!-- Splash Screen Envelope Reveal Layer -->
     <div id="splash-screen">
         <div class="envelope-wrapper">
             <div class="monogram">M & A</div>
@@ -661,12 +666,15 @@
         </div>
     </div>
 
+    <!-- Stage 1: Fullbleed Cinematic Photo Cover -->
     <section class="photo-cover-section">
+        <!-- Names Centered Correctly Over Picture Frame Background -->
         <div class="cover-text-container">
             <h2 class="cover-names">Mownika D V <span class="cover-ampersand">&</span> Adarsh V D</h2>
             <div class="cover-date">June 25th, 2026</div>
         </div>
         
+        <!-- Bottom Controls Frame: Houses Scroll Prompt Dynamically (Timer Moved Below) -->
         <div class="cover-bottom-wrapper">
             <div class="scroll-indicator">
                 Scroll for details
@@ -675,13 +683,16 @@
         </div>
     </section>
 
+    <!-- Stage 2: Main Application Interface Container -->
     <div class="invitation-container" id="main-content">
         
+        <!-- Ornate Header Message Card -->
         <header class="hero-card">
             <p class="invite-statement">
                 Your love, support, and friendship mean the world to us. Please join us for our wedding celebration and bless our sacred union as we step into our beautiful forever.
             </p>
             
+            <!-- Digital Wedding Countdown Safely Placed Here to Prevent Photo Blocking -->
             <p class="countdown-note">Counting down to Muhurtha • June 25, 11:10 AM</p>
             <div class="countdown-container">
                 <div class="countdown-box">
@@ -703,6 +714,7 @@
             </div>
         </header>
 
+        <!-- Dynamic Navigation Tabs Bar -->
         <nav class="navigation-tabs">
             <button class="tab-trigger active" onclick="activateTab(event, 'schedule')">Schedule</button>
             <button class="tab-trigger" onclick="activateTab(event, 'venue')">Venue</button>
@@ -711,6 +723,7 @@
         </nav>
 
         <main>
+            <!-- Panel 1: Schedule Timeline -->
             <div id="schedule" class="tab-content-panel active">
                 <h3 class="panel-title">The Order of Events</h3>
                 <div class="schedule-timeline">
@@ -729,6 +742,7 @@
                 </div>
             </div>
 
+            <!-- Panel 2: Venue Details -->
             <div id="venue" class="tab-content-panel">
                 <h3 class="panel-title">The Location</h3>
                 <div class="venue-grid">
@@ -742,6 +756,7 @@
                 </div>
             </div>
 
+            <!-- Panel 3: Love Photo Gallery Grid -->
             <div id="gallery" class="tab-content-panel">
                 <h3 class="panel-title">Glimpse of Us</h3>
                 <div class="gallery-grid">
@@ -752,6 +767,7 @@
                 </div>
             </div>
 
+            <!-- Panel 4: Interactive RSVP Card -->
             <div id="rsvp" class="tab-content-panel">
                 <h3 class="panel-title">Celebrate With Us</h3>
                 <form class="rsvp-form" onsubmit="handleRSVP(event)">
@@ -778,6 +794,7 @@
         </main>
     </div>
 
+    <!-- Core Interactive Operations Engine Script -->
     <script>
         const soundtrack = document.getElementById('wedding-soundtrack');
         const audioBtn = document.getElementById('audio-toggle');
