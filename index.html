@@ -507,6 +507,23 @@
             margin: 0 auto;
         }
 
+        /* Add this to your stylesheet to force the pic to stay small */
+        .venue-pic-icon img {
+        width: 180px;          /* Keeps the icon size */
+        height: 180px;         
+        object-fit: cover;    
+        
+        /* 1. CHOOSE ONE OF THESE FOR THE SQUARE SHAPE: */
+        border-radius: 12px;   /* Clean square with slightly rounded corners */
+        /* border-radius: 0%; *//* Sharp, perfect square */
+
+        border: 2px solid #ddd; 
+        margin-bottom: 15px;  
+        display: block;       
+        margin-left: auto;
+        margin-right: auto;
+        }
+
         .venue-icon { font-size: 3.5rem; color: var(--accent-gold); margin-bottom: 15px; }
         .venue-name { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--wedding-red); margin-bottom: 12px; font-weight: 700; }
         .venue-address { font-size: 1rem; color: var(--text-main); line-height: 1.7; margin-bottom: 30px; }
@@ -749,19 +766,21 @@
                 </div>
             </div>
 
-            <!-- Panel 2: Venue Details -->
             <div id="venue" class="tab-content-panel">
-                <h3 class="panel-title">The Location</h3>
-                <div class="venue-grid">
-                    <div class="venue-icon">🏰</div>
-                    <h4 class="venue-name">Sri Guru Siddarameshwara Samudaya Bhavana</h4>
-                    <p class="venue-address">
-                        Arasikere,<br>
-                        Karnataka, India
-                    </p>
-                    <a href="https://maps.app.goo.gl/V3JoHvZUhL37ykfc8" target="_blank" class="map-btn">📍 Open Google Maps</a>
-                </div>
-            </div>
+    <h3 class="panel-title">The Location</h3>
+    <div class="venue-grid">
+        <div class="venue-pic-icon">
+            <img src="guru.jpg" alt="Sri Guru Siddarameshwara Samudaya Bhavana Illustration">
+        </div>
+        
+        <h4 class="venue-name">Sri Guru Siddarameshwara Samudaya Bhavana</h4>
+        <p class="venue-address">
+            Arasikere,<br>
+            Karnataka, India
+        </p>
+        <a href="https://maps.app.goo.gl/V3JoHvZUhL37ykfc8" target="_blank" class="map-btn">📍 Open Google Maps</a>
+    </div>
+</div>
 
             <!-- Panel 3: Love Photo Gallery Grid -->
             <div id="gallery" class="tab-content-panel">
