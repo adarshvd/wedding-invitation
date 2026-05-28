@@ -7,7 +7,8 @@
     <!-- Google Fonts for premium elegant typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    <!-- With this updated line: -->
+    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -136,8 +137,8 @@
         }
 
         .monogram {
-            font-family: 'Great Vibes', cursive;
-            font-size: 5.5rem;
+            font-family: 'Allura', cursive;
+            font-size: 7.5rem;
             color: var(--accent-gold);
             margin-bottom: 10px;
             opacity: 0;
@@ -767,7 +768,7 @@
             </div>
 
             <div id="venue" class="tab-content-panel">
-    <h3 class="panel-title">The Location</h3>
+    <h3 class="panel-title">Join us here</h3>
     <div class="venue-grid">
         <div class="venue-pic-icon">
             <img src="guru.jpg" alt="Sri Guru Siddarameshwara Samudaya Bhavana Illustration">
@@ -1002,7 +1003,12 @@
                 body: JSON.stringify(formData)
             })
             .then(response => {
-                alert("Thank you so much! Your wishes and attendance details have been safely recorded. We look forward to celebrating with you! ✨");
+                // Custom alert messages depending on user selection
+                if (guestAttendance === "Joyfully Accept") {
+                    alert("Thank you so much! Your attendance and sweet wishes have been saved. We absolutely cannot wait to celebrate our big day with you! ✨🕺💃");
+                } else {
+                    alert("Thank you for letting us know. You will be dearly missed on our special day, but we truly appreciate your warm wishes and blessings from afar! 🤍✨");
+                }
                 
                 // Safely clear out fields for confirmation
                 document.getElementById('rsvp-name').value = '';
